@@ -34,7 +34,7 @@ void add_linknode(node* head, int n) {
 
 void traverseList(node* head) {
 	node* p = head;
-	printf("The data is£º");
+	printf("The data isÂ£Âº");
 	while (p != NULL) {
 		printf("%d ", p->data);
 		p = p->next;
@@ -57,4 +57,5 @@ int main() {
 	traverseList(head);
 	free_list(head);
 	return 0;
+
 }
