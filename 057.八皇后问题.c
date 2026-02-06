@@ -59,3 +59,4 @@ int main(void) {
 	printf("Total solution: %d\n", total);
 	return 0;
 }
+
