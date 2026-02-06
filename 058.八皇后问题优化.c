@@ -1,16 +1,16 @@
 #include <stdio.h>
 #define N 8
 
-int queen[N]; // queen[i] = j ±íÊ¾µÚiĞĞ»ÊºóÔÚµÚjÁĞ
-int col[N] = { 0 }; // col[j] = 1 ±íÊ¾µÚjÁĞÓĞ»Êºó
-int leftDiag[2 * N - 1] = { 0 }; // leftDiag[i+j] = 1 ±íÊ¾×ó¶Ô½ÇÏßÓĞ»Êºó
-int rightDiag[2 * N - 1] = { 0 }; // rightDiag[i-j+N-1] = 1 ±íÊ¾ÓÒ¶Ô½ÇÏßÓĞ»Êºó
-int count = 0; // ½âµÄ¼ÆÊıÆ÷
+int queen[N]; // queen[i] = j è¡¨ç¤ºç¬¬iè¡Œçš‡ååœ¨ç¬¬jåˆ—
+int col[N] = { 0 }; // col[j] = 1 è¡¨ç¤ºç¬¬jåˆ—æœ‰çš‡å
+int leftDiag[2 * N - 1] = { 0 }; // leftDiag[i+j] = 1 è¡¨ç¤ºå·¦å¯¹è§’çº¿æœ‰çš‡å
+int rightDiag[2 * N - 1] = { 0 }; // rightDiag[i-j+N-1] = 1 è¡¨ç¤ºå³å¯¹è§’çº¿æœ‰çš‡å
+int count = 0; // è§£çš„è®¡æ•°å™¨
 
-// ´òÓ¡ÆåÅÌ
+// æ‰“å°æ£‹ç›˜
 void printSolution() {
     count++;
-    printf("½â #%d:\n", count);
+    printf("è§£ #%d:\n", count);
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             if (queen[i] == j) {
@@ -25,24 +25,24 @@ void printSolution() {
     printf("\n");
 }
 
-// µİ¹éÇó½â
+// é€’å½’æ±‚è§£
 void solve(int row) {
     if (row == N) {
-        printSolution(); // ÕÒµ½Ò»¸ö½â
+        printSolution(); // æ‰¾åˆ°ä¸€ä¸ªè§£
         return;
     }
 
     for (int c = 0; c < N; c++) {
-        // ¼ì²éÊÇ·ñ¿ÉÒÔ·ÅÖÃ»Êºó
+        // æ£€æŸ¥æ˜¯å¦å¯ä»¥æ”¾ç½®çš‡å
         if (!col[c] && !leftDiag[row + c] && !rightDiag[row - c + N - 1]) {
-            // ·ÅÖÃ»Êºó
+            // æ”¾ç½®çš‡å
             queen[row] = c;
             col[c] = leftDiag[row + c] = rightDiag[row - c + N - 1] = 1;
 
-            // µİ¹é·ÅÖÃÏÂÒ»ĞĞ
+            // é€’å½’æ”¾ç½®ä¸‹ä¸€è¡Œ
             solve(row + 1);
 
-            // »ØËİ
+            // å›æº¯
             col[c] = leftDiag[row + c] = rightDiag[row - c + N - 1] = 0;
         }
     }
@@ -50,6 +50,6 @@ void solve(int row) {
 
 int main() {
     solve(0);
-    printf("°Ë»ÊºóÎÊÌâ¹²ÓĞ %d ÖÖ½â·¨\n", count);
+    printf("å…«çš‡åé—®é¢˜å…±æœ‰ %d ç§è§£æ³•\n", count);
     return 0;
 }
